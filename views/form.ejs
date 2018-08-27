@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Status</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="jumbotron text-center">
+        <h4>Status Page</h4>
+    </div>
+    <div class="container">
+        <h2>Order Table</h2>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Company Name</th>
+                        <th>Pincode</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                        <th>trackId</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% order.forEach(function(order){ %>
+                        <tr>
+                            <td>
+                                <%= order.companyName %>
+                            </td>
+                            <td>
+                                <%= order.pincode %>
+                            </td>
+                            <td>
+                                <%= order.product %>
+                            </td>
+                            <td>
+                                <%= order.quantity %>
+                            </td>
+                            <td>
+                                confirmed
+                            </td>
+                            <td>
+                                <%= order._id %>
+                            </td>
+                        </tr>
+                        <% }) %>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

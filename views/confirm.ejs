@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Confirm frame</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .jumbotron {
+            margin-bottom: 0;
+        }
+
+        footer {
+            background-color: #f2f2f2;
+            padding: 25px;
+        }
+    </style>
+    <script>
+        function calculate() {
+            var myBox1 = document.getElementById('Price').value;
+            var myBox2 = document.getElementById('Quantity').value;
+
+            console.log(document.getElementById('Price').value);
+            var result = document.getElementById('result');
+            var myResult = myBox1 * myBox2;
+            result.value = myResult;
+        }
+    </script>
+    <script>
+        // function alert() { <div class = "alert alert-success"
+        //     role = "alert" >
+        //         A simple success alert— check it out!
+        //         </div>
+        // }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h1>Online Store</h1>
+            <p>Mission, Vission & Values</p>
+        </div>
+    </div>
+    <div class="container">
+        <form class="form" action="/confirm" method="POST">
+            <div class="form-group">
+                <label for="name">Company</label>
+                <input type="text" class="form-control" name="order[companyName]">
+            </div>
+            <div class="form-group">
+                <label for="Pincode">Pincode:</label>
+                <input type="number" class="form-control" name="order[pincode]">
+            </div>
+
+            <div class="form-group">
+                <label for="productname">Product Name</label>
+                <h3>
+                    <input type="text" name="order[product]" value="<%= product.name %>" />
+                </h3>
+            </div>
+            <div class="form-group">
+                <label for="productprice">Product Price</label>
+                <div id="Price">
+                    <%= product.price %>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="qun">Quantity</label>
+                <input id="Quantity" name="order[quantity]" type="text" oninput="calculate()" />
+
+            </div>
+            <div class="form-group">
+                <label for="totalprice">Total price</label>
+                <input id="result" />
+            </div>
+            <br>
+            <br>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Track Id</p>
+                            <input name="order[trackid]" </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+        </form>
+        </div>
+</body>
+
+</html>
