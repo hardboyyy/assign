@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Confirm frame</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .jumbotron {
+            margin-bottom: 0;
+        }
+
+        footer {
+            background-color: #f2f2f2;
+            padding: 25px;
+        }
+    </style>
+     <script>
+        function calculate() {
+            var myBox1 = <%= product.price %>;
+            var myBox2 = document.getElementById('Quantity').value;
+            console.log(document.getElementById('Price').value);
+            var result = document.getElementById('result');
+            var myResult = myBox1 * myBox2;
+            result.value = myResult;
+        }
+    </script>
+    
+</head>
+
+<body>
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h1>Online Store</h1>
+            <p>Mission, Vission & Values</p>
+        </div>
+    </div>
+    <div class="container text-center">
+        <form class="form" action="/confirm" method="POST">
+            <div class="form-group">
+                <label for="name">Company</label>
+                <input type="text" class="form-control" name="order[companyName]" required>
+            </div>
+            <div class="form-group">
+                <label for="Pincode">Pincode:</label>
+                <input type="number" class="form-control" name="order[pincode]" pattern="[0-9]{6}" maxlength="6" required>
+            </div>
+
+            <div class="form-group">
+                <label for="productname">Product Name</label>
+                <h3>
+                    <input type="text" name="order[product]" value="<%= product.name %>" readonly="readonly"  />
+                </h3>
+            </div>
+            <div class="form-group">
+                <label for="productprice">Product Price</label>
+                <div id="Price">
+                    <%= product.price %>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="qun">Quantity</label>
+                <input id="Quantity" name="order[quantity]" type="text"  oninput="calculate()" required />
+
+            </div>
+            <!--<p>Available Stock : //</p>-->
+            <div class="form-group">
+                <label for="totalprice">Total price</label>
+                <input id="result" name = "order[totalprice]" />
+            </div>
+                <div class="form-group">
+                    <button class="btn btn-success" id="stockChecking">Buy</button>
+                </div>
+        </form>
+    </div>
+</body>
+
+</html>
